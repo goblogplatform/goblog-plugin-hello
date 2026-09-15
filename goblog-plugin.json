@@ -1,0 +1,10 @@
+{
+  "name": "hello",
+  "display_name": "Hello",
+  "description": "Appends a configurable greeting to the footer of every page. The example goblog dynamic plugin.",
+  "author": "Jason Ernst",
+  "license": "Apache-2.0",
+  "entry": "plugin.go",
+  "min_goblog_version": "0.2.6",
+  "homepage": "https://github.com/goblogplatform/goblog-plugin-hello"
+}
