@@ -19,19 +19,34 @@ type hookInput struct {
 	Settings map[string]string `json:"settings"`
 }
 
+// setting mirrors goblog's settings JSON shape.
+type setting struct {
+	Key         string `json:"key"`
+	Type        string `json:"type"`
+	Default     string `json:"default"`
+	Label       string `json:"label"`
+	Description string `json:"description"`
+}
+
+func outputJSON(v any) int32 {
+	if err := pdk.OutputJSON(v); err != nil {
+		pdk.SetErrorString("encode output: " + err.Error())
+		return 1
+	}
+	return 0
+}
+
 //go:wasmexport identity
 func identity() int32 {
-	pdk.OutputString(`{"name":"hello","display_name":"Hello","version":"2.0.0"}`)
-	return 0
+	return outputJSON(map[string]string{"name": "hello", "display_name": "Hello", "version": "2.0.0"})
 }
 
 //go:wasmexport settings
 func settings() int32 {
-	pdk.OutputString(`[` +
-		`{"key":"enabled","type":"text","default":"true","label":"Enabled","description":"Set to 'true' to show the greeting"},` +
-		`{"key":"message","type":"text","default":"Hello from a WebAssembly plugin","label":"Message","description":"Text shown at the bottom of every page"}` +
-		`]`)
-	return 0
+	return outputJSON([]setting{
+		{Key: "enabled", Type: "text", Default: "true", Label: "Enabled", Description: "Set to 'true' to show the greeting"},
+		{Key: "message", Type: "text", Default: "Hello from a WebAssembly plugin", Label: "Message", Description: "Text shown at the bottom of every page"},
+	})
 }
 
 //go:wasmexport template_footer

@@ -21,7 +21,7 @@ Under **Admin → Settings → Hello**:
 GOOS=wasip1 GOARCH=wasm go build -buildmode=c-shared -ldflags="-s -w" -o plugin.wasm .
 ```
 
-Needs Go 1.24 or newer. The plugin talks to no network (`allowed_hosts` is empty), stores nothing, and only implements the `identity`, `settings` and `template_footer` exports.
+Needs Go 1.25 or newer (`go.mod` pins the toolchain, so `GOTOOLCHAIN=auto` fetches it). The plugin talks to no network (`allowed_hosts` is empty), stores nothing, and only implements the `identity`, `settings` and `template_footer` exports.
 
 ## Use it as a template
 
