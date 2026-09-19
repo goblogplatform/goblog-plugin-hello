@@ -1,10 +1,12 @@
 {
   "name": "hello",
   "display_name": "Hello",
-  "description": "Appends a configurable greeting to the footer of every page. The example goblog dynamic plugin.",
+  "description": "Appends a configurable greeting to the footer of every page. The reference goblog WebAssembly plugin.",
   "author": "Jason Ernst",
   "license": "Apache-2.0",
-  "entry": "plugin.go",
-  "min_goblog_version": "0.2.6",
+  "runtime": "wasm",
+  "entry": "plugin.wasm",
+  "allowed_hosts": [],
+  "min_goblog_version": "0.2.9",
   "homepage": "https://github.com/goblogplatform/goblog-plugin-hello"
 }
